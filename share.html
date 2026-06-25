@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>教学管理系统 - 扫码入口</title>
+<style>
+  :root {
+    --primary: #4A90D9;
+    --success: #52C41A;
+    --warning: #FAAD14;
+    --text: #333;
+    --text-secondary: #666;
+    --bg: #F5F7FA;
+    --card: #fff;
+    --border: #E8ECF1;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #E8F0FE 0%, #F5F7FA 50%, #E8F4FD 100%);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 20px 0 16px;
+  }
+
+  .header .logo {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #4A90D9, #357ABD);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 32px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #357ABD, #4A90D9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+
+  .card .role-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .card .desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .card .qr-box {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .card .qr-box img {
+    width: 180px;
+    height: 180px;
+    display: block;
+  }
+
+  .card .btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #357ABD;
+  }
+
+  .btn-outline {
+    background: white;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+
+  .divider {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .divider::before { left: 0; }
+  .divider::after { right: 0; }
+
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .feature-item {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .feature-item .icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .feature-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .feature-item p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .tip-box {
+    background: #FFF8E1;
+    border: 1px solid #FAAD14;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .tip-box h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #D48806;
+    margin-bottom: 6px;
+  }
+
+  .tip-box p {
+    font-size: 13px;
+    color: #8C6D1F;
+    line-height: 1.6;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">📚</div>
+    <h1>教学管理系统</h1>
+    <p class="subtitle">微信扫码即可使用 · 多人协同 · 数据实时同步</p>
+  </div>
+
+  <!-- 教师入口 -->
+  <div class="card">
+    <div class="role-icon">👩‍🏫</div>
+    <h2>教师端 · 教学日志填写</h2>
+    <p class="desc">每节课后扫码填写，数据自动存入云端<br>支持多人同时录入</p>
+    <div class="qr-box">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ecnvj4y616vp.feishu.cn/share/base/shrcnsBfFRPZ8m5cEhcrgoOxQ0e" alt="教师端二维码" style="width:180px;height:180px;" loading="lazy">
+    </div>
+    <div>
+      <a href="https://ecnvj4y616vp.feishu.cn/share/base/shrcnsBfFRPZ8m5cEhcrgoOxQ0e" class="btn btn-primary" target="_blank">打开教师表单 →</a>
+    </div>
+  </div>
+
+  <div class="divider">● ● ●</div>
+
+  <!-- 家长入口 -->
+  <div class="card">
+    <div class="role-icon">👨‍👩‍👧</div>
+    <h2>家长端 · 学生课堂简报</h2>
+    <p class="desc">输入孩子姓名，查看近期课堂表现<br>教师审核后一键生成微信消息</p>
+    <div class="qr-box">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://parent-briefing-app-production.up.railway.app" alt="家长端二维码" style="width:180px;height:180px;" loading="lazy">
+    </div>
+    <div>
+      <a href="https://parent-briefing-app-production.up.railway.app" class="btn btn-primary">打开家长简报 →</a>
+    </div>
+  </div>
+
+  <!-- 功能特点 -->
+  <div class="features">
+    <div class="feature-item">
+      <div class="icon">📝</div>
+      <h4>结构化录入</h4>
+      <p>自然语言转结构化数据，省时省力</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">🔄</div>
+      <h4>实时同步</h4>
+      <p>数据存入飞书多维表格，即时可查</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">👥</div>
+      <h4>多人协同</h4>
+      <p>多位老师可同时使用，权限灵活</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">📱</div>
+      <h4>扫码即用</h4>
+      <p>微信扫码打开，无需下载安装</p>
+    </div>
+  </div>
+
+  <!-- AI 助手入口 -->
+  <div class="card" style="background: linear-gradient(135deg, #F0F4FF, #E8F0FE);">
+    <div class="role-icon">🤖</div>
+    <h2>AI 智能助手</h2>
+    <p class="desc">在 WorkBuddy 专家中心使用 AI 智能填写<br>自然语言对话即可完成日志录入和简报生成</p>
+    <a href="#" class="btn btn-outline" onclick="alert('请在 WorkBuddy 左侧菜单 → 专家 → 搜索「教学日志助手」或「家长简报助手」')">了解 AI 助手 →</a>
+  </div>
+
+  <div class="tip-box">
+    <h4>💡 使用提示</h4>
+    <p>
+      1. 教师扫码 → 进入飞书表单 → 填写教学日志 → 数据存入云端<br>
+      2. 家长扫码 → 输入孩子姓名 → 查看课堂简报<br>
+      3. 教师在 WorkBuddy 中可用 AI 助手批量处理<br>
+      4. 如需调整权限或添加更多教师，请联系管理员
+    </p>
+  </div>
+
+  <div class="footer">
+    数据安全存储于飞书多维表格 · 仅授权人员可访问
+  </div>
+</div>
+</body>
+</html>
