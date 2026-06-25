@@ -1,0 +1,19 @@
+{
+  "name": "parent-briefing-app",
+  "version": "1.0.0",
+  "description": "家长简报查看系统 - 永久部署版",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["feishu", "education", "parent-briefing"],
+  "author": "WorkBuddy AI",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

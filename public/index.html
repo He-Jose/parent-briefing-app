@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>学生课堂简报</title>
+<style>
+  :root {
+    --primary: #4A90D9;
+    --primary-light: #E8F0FE;
+    --success: #52C41A;
+    --warning: #FAAD14;
+    --text: #333;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --bg: #F5F7FA;
+    --card: #fff;
+    --border: #E8ECF1;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+  }
+
+  .header .icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #4A90D9, #357ABD);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 28px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* Search */
+  .search-box {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .search-box label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .search-row input {
+    flex: 1;
+    height: 46px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 16px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .search-row input:focus {
+    border-color: var(--primary);
+  }
+
+  .search-row input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .search-row button {
+    height: 46px;
+    padding: 0 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .search-row button:active {
+    background: #357ABD;
+    transform: scale(0.97);
+  }
+
+  .search-row button:disabled {
+    background: #B0C4DE;
+    cursor: not-allowed;
+  }
+
+  /* Status */
+  .status {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .status.error {
+    color: #E24B4A;
+    background: #FCEBEB;
+    border-radius: 8px;
+  }
+
+  /* Briefing Card */
+  .briefing-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--primary);
+  }
+
+  .briefing-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .briefing-card .date {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .briefing-card .subject-tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .briefing-card .meta-row {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .info-section {
+    margin-bottom: 12px;
+  }
+
+  .info-section .label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .info-section .content {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* Summary */
+  .summary-box {
+    background: linear-gradient(135deg, #E8F0FE, #F0F4FF);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 16px;
+  }
+
+  .summary-box h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+
+  .summary-box .summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .summary-box .summary-item .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .dot.highlight { background: var(--success); }
+  .dot.notice { background: var(--warning); }
+  .dot.info { background: var(--primary); }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+  }
+
+  .empty-state .empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  .empty-state p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 24px;
+  }
+
+  .spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px 0 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .footer a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="icon">&#x1F4DA;</div>
+    <h1>学生课堂简报</h1>
+    <p>输入孩子姓名，查看近期课堂表现</p>
+  </div>
+
+  <div class="search-box">
+    <label>学生姓名</label>
+    <div class="search-row">
+      <input type="text" id="studentName" placeholder="请输入学生姓名" autocomplete="off" autofocus>
+      <button id="searchBtn" onclick="searchBriefing()">查询</button>
+    </div>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="footer">
+    数据来源：教学日志管理系统<br>
+    <span style="opacity:0.6">仅显示与该学生相关的课堂记录</span>
+  </div>
+</div>
+
+<script>
+const input = document.getElementById('studentName');
+const btn = document.getElementById('searchBtn');
+const result = document.getElementById('result');
+
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') searchBriefing();
+});
+
+async function searchBriefing() {
+  const name = input.value.trim();
+  if (!name) {
+    input.focus();
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '查询中...';
+  result.innerHTML = '<div class="loading"><div class="spinner"></div><p>正在检索课堂记录...</p></div>';
+
+  try {
+    const resp = await fetch(`/api/briefing?name=${encodeURIComponent(name)}`);
+    const data = await resp.json();
+
+    if (!data.ok) {
+      result.innerHTML = `<div class="status error">${data.error || '查询失败，请重试'}</div>`;
+      return;
+    }
+
+    const briefing = data.data;
+    if (!briefing || briefing.total === 0) {
+      result.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">&#x1F50D;</div>
+          <p>暂未找到 <strong>${escapeHtml(name)}</strong> 的课堂记录</p>
+          <p style="margin-top:8px;font-size:13px;color:#999">请确认姓名是否正确，或等待老师录入后查询</p>
+        </div>
+      `;
+      return;
+    }
+
+    renderBriefing(briefing);
+  } catch (err) {
+    result.innerHTML = `<div class="status error">网络错误：${escapeHtml(err.message)}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '查询';
+  }
+}
+
+function renderBriefing(briefing) {
+  let html = `<div style="margin-bottom:16px;font-size:14px;color:#666">
+    找到 <strong>${briefing.total}</strong> 条与 <strong>${escapeHtml(briefing.name)}</strong> 相关的课堂记录
+  </div>`;
+
+  // Individual records
+  (briefing.records || []).forEach((r, i) => {
+    html += `
+      <div class="briefing-card">
+        <div class="card-header">
+          <span class="date">${escapeHtml(r.date || '未知日期')}</span>
+          <span class="subject-tag">${escapeHtml(r.subject || '未知科目')}</span>
+        </div>
+        <div class="meta-row">${escapeHtml(r.grade || '')} ${escapeHtml(r.className || '')}</div>
+        ${r.content ? `<div class="info-section"><div class="label">教学内容</div><div class="content">${escapeHtml(r.content)}</div></div>` : ''}
+        ${r.performance ? `<div class="info-section"><div class="label">课堂表现</div><div class="content">${escapeHtml(r.performance)}</div></div>` : ''}
+        ${r.observation ? `<div class="info-section"><div class="label">学生观察</div><div class="content">${escapeHtml(r.observation)}</div></div>` : ''}
+        ${r.homework ? `<div class="info-section"><div class="label">作业</div><div class="content">${escapeHtml(r.homework)}</div></div>` : ''}
+      </div>
+    `;
+  });
+
+  result.innerHTML = html;
+}
+
+function escapeHtml(text) {
+  if (!text) return '';
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
